@@ -10,7 +10,7 @@ const authenticateRoute = require('./authenticateRoute');
 module.exports = () => {
 
   router.use(
-    checkJwt({ secret: process.env.JWT_SECRET, algorithms: ['RS256'] }).unless({ path: '/api/authenticate' })
+    checkJwt({ secret: process.env.JWT_SECRET, algorithms: ['sha1', 'RS256', 'HS256'] }).unless({ path: '/api/authenticate' })
   );
 
   router.use((err, req, res, next) => {
