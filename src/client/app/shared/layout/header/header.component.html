@@ -1,0 +1,20 @@
+<mat-drawer-container class="container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side">
+      <!-- <p>Menu</p> -->
+      <button color="primary" mat-button routerLink="/contacts">Contacts</button>
+    </mat-drawer>
+    <div class="sidenav-content">
+      <mat-toolbar color="primary">
+        <mat-toolbar-row>
+          <button mat-icon-button (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+          </button>
+  
+          <span>Title</span>
+          <span class="spacer"></span>
+          <mat-icon>favorite</mat-icon>
+        </mat-toolbar-row>
+      </mat-toolbar>
+    </div>
+    <router-outlet></router-outlet>
+</mat-drawer-container>
