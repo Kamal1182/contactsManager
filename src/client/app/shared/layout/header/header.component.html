@@ -13,6 +13,19 @@
           <span>Title</span>
           <span class="spacer"></span>
           <mat-icon>favorite</mat-icon>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu>
+            <button mat-menu-item>
+              <mat-icon>login</mat-icon>
+              <span>Login</span>
+            </button>
+            <button mat-menu-item [disabled]="isUnchanged">
+              <mat-icon>comment</mat-icon>
+              <span>Comment</span>
+            </button>
+          </mat-menu>
         </mat-toolbar-row>
       </mat-toolbar>
     </div>

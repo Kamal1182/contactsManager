@@ -5,6 +5,10 @@ import { ContactsRoutingModule } from './contacts-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 
+// Material
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -13,7 +17,12 @@ import { ContactListComponent } from './contact-list/contact-list.component';
   ],
   imports: [
     CommonModule,
-    ContactsRoutingModule
+    ContactsRoutingModule,
+
+    // Material
+    MatButtonModule,
+    MatCardModule,
+    MatIconModule
   ]
 })
 export class ContactsModule { }
