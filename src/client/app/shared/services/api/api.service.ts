@@ -49,7 +49,7 @@ export class ApiService {
   post(url: string, body: object) : Observable<any> {
     return this.http.post(`${this.baseUrl}/${url}`, body, this.headers)
     .pipe(
-      retry(1),
+      retry(0),
       catchError((res: any) => {
         return this.onRequestError(res);})
     ) 
@@ -81,9 +81,6 @@ export class ApiService {
       retry(1),
       //catchError(this.httpError)
       catchError((res: any) => {
-        console.log(res);
-        console.log(res.status);
-        console.log(res.error);
         return this.onRequestError(res);})
     )
   }
@@ -157,7 +154,6 @@ export class ApiService {
   }
 
   onRequestError(res: any) {
-    console.log(res);
     const statusCode = res.status;
     const body = res;
 

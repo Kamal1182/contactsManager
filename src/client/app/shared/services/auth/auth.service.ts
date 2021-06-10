@@ -9,9 +9,7 @@ export class AuthService {
   storageKey: string = 'contact-manager-jwt';
 
   setToken(token: string) {
-    console.log(`from auth.service.ts: ${token}`);
     localStorage.setItem(this.storageKey, token);
-    console.log(localStorage.getItem(this.storageKey));
   }
 
   getToken() {

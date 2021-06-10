@@ -42,15 +42,12 @@ export class ContactListComponent implements OnInit {
   }
 
   onResize(event: any) {
-    switch(event.target.innerWidth) {
-      case (event.target.innerWidth <= 907):
-        this.breakpoint = 2;
-        break;
-      case (event.target.innerWidth <= 608):
-        this.breakpoint = 1;
-        break;
-      default:
-        this.breakpoint = 3;
+    if(event.target.innerWidth <= 608) {
+      this.breakpoint = 1;
+    } else if (event.target.innerWidth <= 907) {
+      this.breakpoint = 2;
+    } else {
+      this.breakpoint = 3;
     }
   }
 

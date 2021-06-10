@@ -56,19 +56,16 @@ export class LoginComponent implements OnInit {
 
     this.api.post( 'authenticate', payload )
       .subscribe( data => {
-        console.log(data);
-        console.log(data.statusCode);
         if( data.statusCode == 404 ) {
-            this.userServerError = data.error.error;
+            this.userServerError = data.error;
             //Observable.throwError(data);
         } else if( data.statusCode == 401 ) {
-            this.passwordServerError = data.error.error;
+            this.passwordServerError = data.error;
             //Observable.throwError(data);
         } else if( data.statusCode == 422 ) {
-            this.userServerError = data.error.error.username;
-            this.passwordServerError = data.error.error.password;
+            this.userServerError = data.error.username;
+            this.passwordServerError = data.error.password;
         } else {
-            console.log('I am here');
             this.auth.setToken(data.token);
             this.router.navigate(['contacts']);
        }
