@@ -1,5 +1,33 @@
 <mat-card>
-  <mat-card-header></mat-card-header>
-  <mat-card-content></mat-card-content>
-  <mat-card-actions></mat-card-actions>
+  <mat-card-header>
+    <div mat-card-avatar *ngIf="contact.photoUrl.data" [ngStyle]="{ 'background-image': 'url(' + contact.photoUrl.data + ')', 'background-size': 'cover' }"></div>
+    <div mat-card-avatar *ngIf="!contact.photoUrl.data" [ngStyle]="{ 'background-image': 'url(' + contact.photoUrl + ')', 'background-size': 'cover' }"></div>
+    <!-- <div *ngIf="contact.photoUrl.data; then binaryAvatarImage else serverAvatarImage"></div>
+    <ng-template #binaryAvatarImage> <div mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + contact.photoUrl.data + ')', 'background-size': 'cover', 'align': 'right' }"></div> </ng-template>
+    <ng-template #serverAvatarImage> <div mat-card-avatar [ngStyle]="{ 'background-image': 'url(' + contact.photoUrl +')', 'background-size': 'cover' }"></div> </ng-template> -->
+  
+    <!-- <div mat-card-avatar></div> -->
+    <mat-card-title>
+      <div *ngIf="contact.name; then name else firstNameLastName"></div>
+      <ng-template #name> <a class="header">{{contact.name}}</a> </ng-template>
+      <ng-template #firstNameLastName> <a class="header">{{contact.firstName}} {{contact.lastName}}</a> </ng-template>
+    </mat-card-title>
+    <mat-card-subtitle>mkamal11@gmail.com</mat-card-subtitle>
+  </mat-card-header>
+  <div *ngIf="contact.photoUrl.data; then binaryImage else serverImage"></div>
+  <ng-template #binaryImage> <img mat-card-image [src]="contact?.photoUrl.data"> </ng-template>
+  <ng-template #serverImage> <img mat-card-image [src]="contact?.photoUrl"> </ng-template>
+  <mat-card-content>
+    <div *ngIf="contact.phone; then phoneDataOneValue else phoneDataDetails"></div>
+    <ng-template #phoneDataOneValue> {{ contact.phone }} </ng-template>
+    <ng-template #phoneDataDetails> {{contact.areaCode}} {{contact.prefix}}-{{contact.lineNumber}} </ng-template>
+    <br>
+    <p>Address: {{contact.address}}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button color="primary">Edit</button>
+    <button mat-button color="primary">Delete</button>
+    <div class="flex-spacer"></div>
+    <button mat-icon-button><mat-icon>publish</mat-icon></button>
+  </mat-card-actions>
 </mat-card>

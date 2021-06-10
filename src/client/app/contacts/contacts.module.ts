@@ -6,9 +6,11 @@ import { ContactComponent } from './contact/contact.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 
 // Material
-import { MatButtonModule } from '@angular/material/button';
+import { AngularMaterialModule } from '../angularMaterial/angular-material.module';
+
+/* import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatIconModule } from '@angular/material/icon';
+import { MatIconModule } from '@angular/material/icon'; */
 
 @NgModule({
   declarations: [
@@ -20,9 +22,10 @@ import { MatIconModule } from '@angular/material/icon';
     ContactsRoutingModule,
 
     // Material
-    MatButtonModule,
+    AngularMaterialModule,
+    /* MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule */
   ]
 })
 export class ContactsModule { }

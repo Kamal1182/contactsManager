@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Contact } from '../../shared/model/contact.model';
+import { ApiService } from '../../shared/services/api/api.service';
+import { AuthService } from '../../shared/services/auth/auth.service';
+
 
 @Component({
   selector: 'app-contact-list',
@@ -7,9 +11,47 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactListComponent implements OnInit {
 
-  constructor() { }
+  contacts!: Contact[];
+
+  seachTerm: string = '';
+
+  breakpoint!: number;
+
+  constructor(public api: ApiService, private auth: AuthService) { 
+    api.refreshCall$.subscribe(
+      () => {
+        this.refeshContacts(null);
+      }  
+    );
+  }
 
   ngOnInit(): void {
+
+    this.breakpoint = (window.innerWidth <= 907) ? 2 : 3;
+
+    //this.contacts = this.api.get('contacts').unsubscribe;
+
+    this.api.get('contacts')
+      .subscribe(data => {
+        this.contacts = data;
+      });
+  }
+
+  refeshContacts(event: null){
+    this.ngOnInit();
+  }
+
+  onResize(event: any) {
+    switch(event.target.innerWidth) {
+      case (event.target.innerWidth <= 907):
+        this.breakpoint = 2;
+        break;
+      case (event.target.innerWidth <= 608):
+        this.breakpoint = 1;
+        break;
+      default:
+        this.breakpoint = 3;
+    }
   }
 
 }

@@ -1,0 +1,38 @@
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-card class="box">
+    <mat-card-header>
+      <mat-card-title>Log in</mat-card-title>
+    </mat-card-header>
+
+    <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput #username formControlName="username" name="username" type="text" placeholder="Username">
+          <small class="error" *ngIf="loginForm.controls['username'].invalid && (loginForm.controls['username'].dirty || loginForm.controls['username'].touched)">
+            <small class="error" *ngIf="loginForm.controls['username'].errors?.required">
+              Enter your username!
+            </small>
+          </small>
+          <small class="error" *ngIf='userServerError'>
+            {{userServerError}}
+          </small>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput #pssword formControlName="password" name="password" type="password" placeholder="Password">
+          <small class="error" *ngIf="loginForm.controls['password'].invalid && (loginForm.controls['password'].dirty || loginForm.controls['password'].touched)">
+            <small class="error" *ngIf="loginForm.controls['password'].errors?.required">
+              Enter your password!
+            </small>
+          </small>
+          <small class="error" *ngIf="passwordServerError">
+            {{passwordServerError}}
+          </small>
+        </mat-form-field>
+      </mat-card-content>
+      <button mat-stroked-button type="submit" [disabled]="loginForm.invalid" color="accent" class="btn-block">Log in</button>
+    </form>
+  </mat-card>
+
+  </div>

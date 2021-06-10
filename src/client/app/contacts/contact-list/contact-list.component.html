@@ -1,1 +1,5 @@
-<p>contact-list works!</p>
+<mat-grid-list [cols]="breakpoint" rowHeight="1:2" (window:resize)="onResize($event)">
+  <mat-grid-tile *ngFor="let contact of contacts">
+    <app-contact [contact]="contact"></app-contact>
+  </mat-grid-tile>
+</mat-grid-list>

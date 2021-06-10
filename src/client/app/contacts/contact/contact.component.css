@@ -1,0 +1,20 @@
+.mat-card {
+    /* padding: 16px; */
+    /* max-width: 300px; */
+    margin: 1rem;
+    /* width: calc(100% - 70px);
+    height: calc(100% - 70px); */
+}
+
+/* .mat-card-avatar {
+    background-size: cover;
+    background-image: url('../../../assets/Mohamed-Aboelmaged.jpeg');
+} */
+
+.mat-card-actions {
+    display: flex;
+}
+
+.mat-card-actions .flex-spacer {
+    width: 100%;
+}
