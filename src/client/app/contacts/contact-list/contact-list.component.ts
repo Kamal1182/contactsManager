@@ -27,14 +27,20 @@ export class ContactListComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.breakpoint = (window.innerWidth <= 907) ? 2 : 3;
-
     //this.contacts = this.api.get('contacts').unsubscribe;
 
     this.api.get('contacts')
       .subscribe(data => {
         this.contacts = data;
       });
+
+    if(window.innerWidth <= 608) {
+      this.breakpoint = 1;
+    } else if (window.innerWidth <= 907) {
+      this.breakpoint = 2;
+    } else {
+      this.breakpoint = 3;
+    }
   }
 
   refeshContacts(event: null){
