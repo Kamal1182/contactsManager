@@ -162,8 +162,11 @@ export class ApiService {
       error : body.error.error
     }
 
+    // if(error.error == 'jwt expired') {
     if(error.error == 'jwt expired') {
       this.auth.logout(true);
+    } else if(error.error == 'jwt malformed'){
+      this.auth.logout(false);
     }
 
     console.log('from api.service.ts')

@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   userServerError = '';
   passwordServerError = '';
   sessionExpired : boolean = false;
+  loggedIn : boolean = false;
 
   constructor(
     private api: ApiService,
@@ -24,9 +25,10 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder
   ) { 
       this.validateLoginForm();
-      // if(this.router.getCurrentNavigation()!.extras.state) {
-      //   this.sessionExpired = this.router.getCurrentNavigation()!.extras.state!.sessionExpired;
-      // }
+      //check weather the logging session is expired or not!
+      if(this.router.getCurrentNavigation()!.extras.state) {
+        this.sessionExpired = this.router.getCurrentNavigation()!.extras.state!.sessionExpired;
+      }
   }
 
   validateLoginForm() {
@@ -37,7 +39,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.auth.isLoggedIn()) {
+    this.auth.isLoggedIn().subscribe( data => this.loggedIn = data);
+    if(this.loggedIn) {
       this.router.navigate(['contacts']);
     }
   }

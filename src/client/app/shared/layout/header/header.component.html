@@ -17,13 +17,17 @@
             <mat-icon>more_vert</mat-icon>
           </button>
           <mat-menu #menu>
-            <button mat-menu-item>
+            <button mat-menu-item *ngIf="!loggedIn" [routerLink]="'login'">
               <mat-icon>login</mat-icon>
               <span>Login</span>
             </button>
             <button mat-menu-item [disabled]="isUnchanged">
               <mat-icon>comment</mat-icon>
               <span>Comment</span>
+            </button>
+            <button mat-menu-item *ngIf="loggedIn" (click)="logout()">
+              <mat-icon>logout</mat-icon>
+              <span>logout</span>
             </button>
           </mat-menu>
         </mat-toolbar-row>
