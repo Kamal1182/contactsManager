@@ -29,7 +29,7 @@ import { HeaderComponent } from './shared/layout/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

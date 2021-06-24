@@ -9,3 +9,10 @@ mat-grig-title {
 app-contact {
   margin: auto;
 } */
+
+.mat-form-field {
+  display: flex;
+  justify-content: right;
+  align-items: right;
+  text-align: right;
+}
