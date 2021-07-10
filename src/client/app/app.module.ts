@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 // Material section
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angularMaterial/angular-material.module';
@@ -36,6 +38,9 @@ import { HeaderComponent } from './shared/layout/header/header.component';
     AppRoutingModule,
 
     HttpClientModule,
+
+    FormsModule,
+    ReactiveFormsModule,
 
     // Material
     BrowserAnimationsModule,

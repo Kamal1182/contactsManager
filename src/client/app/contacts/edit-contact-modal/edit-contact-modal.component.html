@@ -1,0 +1,46 @@
+<div>
+<div>
+  <div class="add-title">
+    <h2 mat-dialog-title *ngIf="contact.name">Edit <strong>{{contact.name}}`s</strong> data </h2>
+    <h2 mat-dialog-title *ngIf="contact.firstName">Edit <strong>{{contact.firstName}}`s</strong> data </h2>
+  </div>
+</div>    
+<div>
+  <form [formGroup]="editContactForm" (ngSubmit)="onSubmit()" [class.loading]="loading" novalidate>
+    <mat-grid-list [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput #firstName placeholder="First Name" type="text" formControlName="firstName">
+          <mat-error style="color: red;" *ngIf="editContactForm.controls['firstName'].invalid && (editContactForm.controls['firstName'].dirty || editContactForm.controls['firstName'].touched)">
+            <mat-error *ngIf="editContactForm.controls['firstName'].errors?.required">
+              Enter your first name!
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>  
+      
+      <mat-grid-tile>
+        <mat-form-field>
+          <input matInput #lastName placeholder="Last Name" type="text" formControlName="lastName">
+          <mat-error style="color: red;" *ngIf="editContactForm.controls['lastName'].invalid && (editContactForm.controls['lastName'].dirty || editContactForm.controls['lastName'].touched)">
+            <mat-error *ngIf="editContactForm.controls['lastName'].errors?.required">
+              Enter your last name!
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+      
+      <mat-grid-tile [colspan]="2">
+        <mat-form-field>
+          <input matInput #address placeholder="Address" type="text" formControlName="address">
+          <mat-error style="color: red;" *ngIf="editContactForm.controls['address'].invalid && (editContactForm.controls['address'].dirty || editContactForm.controls['address'].touched)">
+            <mat-error *ngIf="editContactForm.controls['address'].errors?.required">
+              Enter your address!
+            </mat-error>
+          </mat-error>
+        </mat-form-field>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</div>
+<div>

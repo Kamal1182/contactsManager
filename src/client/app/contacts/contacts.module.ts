@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { ContactsRoutingModule } from './contacts-routing.module';
 import { ContactComponent } from './contact/contact.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
  
 // Material
 import { AngularMaterialModule } from '../angularMaterial/angular-material.module';
 import { SearchContactPipe } from '../pipe/contacts/search-contact.pipe';
+import { EditContactModalComponent } from './edit-contact-modal/edit-contact-modal.component';
 
 
 /* import { MatButtonModule } from '@angular/material/button';
@@ -19,7 +20,8 @@ import { MatIconModule } from '@angular/material/icon'; */
   declarations: [
     ContactComponent,
     ContactListComponent,
-    SearchContactPipe
+    SearchContactPipe,
+    EditContactModalComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { MatIconModule } from '@angular/material/icon'; */
     MatCardModule,
     MatIconModule */
 
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class ContactsModule { }
