@@ -59,7 +59,7 @@ module.exports = () => {
 
     const user = req.body;
     delete user._id;
-
+    console.log(req.body);
     // Write the image to profiles folder
     var buffer = new Buffer(req.body.photoUrl.data, 'base64');
     fs.writeFile(process.cwd()+`/src/server/profiles/${req.body.firstName}-${req.body.lastName}.${req.body.photoUrl.extension}`,

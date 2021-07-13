@@ -56,8 +56,14 @@ export class ApiService {
     ;
   }
 
-  put(url: string, body: object) {
-    return this.request(url, 'PUT', body);
+  put(url: string, body: object) : Observable<any>{
+    return this.http.put(`${this.baseUrl}/${url}`, body, this.headers)
+      .pipe(
+        retry(0),
+        catchError((res: any) => {
+        return this.onRequestError(res);})
+      )
+    // return this.request(url, 'PUT', body);
   }
 
   delete(url: string) {
