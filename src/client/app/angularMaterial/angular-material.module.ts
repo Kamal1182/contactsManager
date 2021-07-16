@@ -34,6 +34,7 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDialogModule, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MaterialFileInputModule } from 'ngx-material-file-input';
 
 const materialModules = [
   MatButtonModule,
@@ -68,7 +69,8 @@ const materialModules = [
   MatRadioModule,
   MatDatepickerModule,
   MatTooltipModule,
-  MatDialogModule
+  MatDialogModule,
+  MaterialFileInputModule
 ]
 
 @NgModule({

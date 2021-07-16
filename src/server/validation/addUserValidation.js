@@ -23,6 +23,12 @@ const addContactValidationRules = () => {
       .isLength({ min: 3, max: 3 }).withMessage('Prefix code should be 3 numbers'),
     body('lineNumber').trim().isNumeric().withMessage('Line number should only be a number')
       .isLength({ min: 4, max: 4 }).withMessage('Line number should be 4 numbers'),
+    body('photoUrl').custom((value) => {  console.log(value.extension);
+                                          if( value.extension != 'jpeg' | 'jpg' | 'gif') 
+                                            { return Promise.reject('pdf not supported') }
+                                          else
+                                            return true  
+                                       }) 
     //body('photoUrl').isLength({ min: 3 }).withMessage('photo url should not be less than 3 characters'),
     //body('photoUrl').notEmpty().withMessage('You must enter a photo'),
   ]
@@ -50,14 +56,14 @@ const validate = (req, res, next) => {
   if (errors.isEmpty()) {
     return next()
   }
-  console.log(req.body);
+  //console.log(req.body);
   /* const extractedErrors = [];
   errors.array().map(err => extractedErrors.push({ [err.param]: err.msg }));
    */
   const extractedErrors = {};
   errors.array().map(err => extractedErrors[err.param] = err.msg );
-  console.log('from addUserValidation');
-  console.log(extractedErrors);
+  //console.log('from addUserValidation');
+  // console.log(extractedErrors);
 
   return res.status(422).json({
     error: extractedErrors,

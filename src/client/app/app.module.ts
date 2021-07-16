@@ -8,12 +8,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 // Material section
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angularMaterial/angular-material.module';
-/* import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatMenuModule } from '@angular/material/menu'; */
 
 // Routing
 import { AppRoutingModule } from './app-routing.module';
