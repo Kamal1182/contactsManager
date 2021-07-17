@@ -61,13 +61,20 @@ export class ApiService {
       .pipe(
         retry(0),
         catchError((res: any) => {
-        return this.onRequestError(res);})
+          return this.onRequestError(res);})
       )
     // return this.request(url, 'PUT', body);
   }
 
-  delete(url: string) {
-    return this.request(url, 'DELETE');
+  delete(url: string, ) {
+    return this.http.delete(`${this.baseUrl}/${url}`)
+      .pipe(
+        retry(0),
+        catchError((res:any) => {
+          return this.onRequestError(res);
+        })
+      )
+    // return this.request(url, 'DELETE');
   }
 
   

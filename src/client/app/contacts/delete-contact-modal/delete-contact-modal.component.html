@@ -1,0 +1,10 @@
+<div class="add-title">
+    <h2 mat-dialog-title *ngIf="contact.name">Delete <strong>{{contact.name}}`s</strong> data </h2>
+    <h2 mat-dialog-title *ngIf="contact.firstName">Delete <strong>{{contact.lastName}}`s</strong> data </h2>
+</div>
+
+<p>All information associated to this user contact will be permanently deleted.
+    <span class="text-danger">This operation can not be undone.</span>
+</p>
+
+<button mat-raised-button color="warn" (click)="deleteContact()">Delete</button>

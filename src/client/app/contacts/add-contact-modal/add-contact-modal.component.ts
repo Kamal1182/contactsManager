@@ -43,7 +43,7 @@ export class AddContactModalComponent implements OnInit {
   @ViewChild('img') img: any;  
 
   constructor(private fb: FormBuilder,
-              private dialogRef: MatDialogRef<AddContactModalComponent>,
+              private AddDialogRef: MatDialogRef<AddContactModalComponent>,
               @Inject(MAT_DIALOG_DATA) data: Contact,
               private _EditedContactsnackBar: MatSnackBar,
               private api: ApiService) {
@@ -191,6 +191,7 @@ export class AddContactModalComponent implements OnInit {
           console.log(this.newContact);
           this._EditedContactsnackBar.open(`${this.newContact.firstName} ${this.newContact.lastName}`, 'Added!', {duration: 5000} );
           this.api.makeRefresh();
+          this.AddDialogRef.close();
        }
       });
   }
@@ -198,7 +199,7 @@ export class AddContactModalComponent implements OnInit {
   private resetAll() {
     this.loading = false;
     // this.editContactModal.dismissAll();
-    this.dialogRef.close();
+    this.AddDialogRef.close();
     
     this.firstnameServerError = '';
     this.lastnameServerError = '';

@@ -11,6 +11,7 @@ import { AngularMaterialModule } from '../angularMaterial/angular-material.modul
 import { SearchContactPipe } from '../pipe/contacts/search-contact.pipe';
 import { EditContactModalComponent } from './edit-contact-modal/edit-contact-modal.component';
 import { AddContactModalComponent } from './add-contact-modal/add-contact-modal.component';
+import { DeleteContactModalComponent } from './delete-contact-modal/delete-contact-modal.component';
 
 
 /* import { MatButtonModule } from '@angular/material/button';
@@ -23,7 +24,8 @@ import { MatIconModule } from '@angular/material/icon'; */
     ContactListComponent,
     SearchContactPipe,
     EditContactModalComponent,
-    AddContactModalComponent
+    AddContactModalComponent,
+    DeleteContactModalComponent
   ],
   imports: [
     CommonModule,
