@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Contact } from '../../shared/model/contact.model';
 import { ApiService } from '../../shared/services/api/api.service';
 import { AuthService } from '../../shared/services/auth/auth.service';
+import { AddContactModalComponent } from '../add-contact-modal/add-contact-modal.component';
 
 
 @Component({
@@ -17,7 +19,9 @@ export class ContactListComponent implements OnInit {
 
   breakpoint!: number;
 
-  constructor(public api: ApiService, private auth: AuthService) { 
+  constructor(public api: ApiService, private auth: AuthService,
+              private addNewContactdialog: MatDialog
+             ) { 
     api.refreshCall$.subscribe(
       () => {
         this.refeshContacts(null);
@@ -55,6 +59,14 @@ export class ContactListComponent implements OnInit {
     } else {
       this.breakpoint = 3;
     }
+  }
+
+  openAddNewContactDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = '640px';
+
+    this.addNewContactdialog.open(AddContactModalComponent, dialogConfig);
   }
 
 }

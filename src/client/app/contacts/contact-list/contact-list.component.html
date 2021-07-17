@@ -1,7 +1,16 @@
-<mat-form-field class="searchContact">
-  <mat-label>Search Contact</mat-label>
-  <input matInput name="username" type="text" [(ngModel)]="seachTerm">
-</mat-form-field>
+
+<div layout="row" layout-align="center center">
+  <div>
+    <mat-form-field class="searchContact">
+      <mat-label>Search Contact</mat-label>
+      <input matInput name="username" type="text" [(ngModel)]="seachTerm">
+    </mat-form-field>
+  </div>
+  <div>
+    <button mat-raised-button matSuffix mat-stroked-button color="primary" (click)="openAddNewContactDialog()">Add New Contact</button>
+  </div>
+</div>
+
 <mat-grid-list [cols]="breakpoint" rowHeight="1:2" (window:resize)="onResize($event)">
   <mat-grid-tile *ngFor="let contact of contacts  | searchContact: seachTerm">
     <app-contact [contact]="contact"></app-contact>

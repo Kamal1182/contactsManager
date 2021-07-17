@@ -18,12 +18,12 @@ const addContactValidationRules = () => {
       .isAlpha().withMessage('Last Name should only be alphabetic.'),
     body('address').trim().not().isEmpty().withMessage('Address is required.'),
     body('areaCode').trim().isNumeric().withMessage('Area code should only be a number')
-      .isLength({ min: 3, max: 3 }).withMessage('Area code should be 3 numbers'),
+      .isLength({ min: 5, max: 5 }).withMessage('Area code should be 5 numbers'),
     body('prefix').trim().isNumeric().withMessage('Prefix code should only be a number')
       .isLength({ min: 3, max: 3 }).withMessage('Prefix code should be 3 numbers'),
     body('lineNumber').trim().isNumeric().withMessage('Line number should only be a number')
       .isLength({ min: 4, max: 4 }).withMessage('Line number should be 4 numbers'),
-    body('photoUrl').custom((value) => {  console.log(value.extension);
+    body('photoUrl').custom((value) => {  
                                           if( value.extension != 'jpeg' | 'jpg' | 'gif') 
                                             { return Promise.reject('pdf not supported') }
                                           else

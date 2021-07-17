@@ -1,0 +1,89 @@
+  <div class="add-title">
+    <h2 mat-dialog-title>Add New Contact</h2>
+  </div>
+      
+  <mat-dialog-content>
+    <form [formGroup]="addContactForm" (ngSubmit)="onSubmit()" [class.loading]="loading" novalidate>
+      <mat-grid-list #gridList [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">
+  
+        <mat-grid-tile *ngIf="choosenImage" [colspan]="breakpoint" [rowspan]="3">
+          <div *ngIf="choosenImage">
+            <img #img mat-card-image [src]="choosenImage" [style.width.px]="255">
+          </div>  
+        </mat-grid-tile>
+    
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput #firstName placeholder="First Name" type="text" formControlName="firstName">
+              <mat-error *ngIf="addContactForm.controls['firstName'].errors?.required">Enter first name</mat-error>
+              <mat-error>{{firstnameServerError}}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>  
+        
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput #lastName placeholder="Last Name" type="text" formControlName="lastName">
+              <mat-error *ngIf="addContactForm.controls['lastName'].errors?.required">Enter your last name!</mat-error>
+              <mat-error>{{lastnameServerError}}</mat-error>
+            </mat-form-field>
+          </mat-grid-tile>
+          
+          <mat-grid-tile [colspan]="breakpoint">
+            <mat-form-field [style.width.px]="addressFieldWidth-110">
+              <!-- <input matInput #address placeholder="Address" type="text" formControlName="address"> -->
+              <textarea matInput #address placeholder="Address" type="text" formControlName="address"></textarea>
+              <mat-error *ngIf="addContactForm.controls['address'].errors?.required">Enter your address!</mat-error>
+              <mat-error>{{addressServerError}}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <mat-form-field [style.width.px]="addressFieldWidth/3-15">
+            <mat-label>Area Code</mat-label>
+            <input matInput #areaCode formControlName="areaCode" placeholder="#####" required>
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="addContactForm.controls['areaCode'].errors?.required">Enter your area code!</mat-error>
+            <mat-error *ngIf="addContactForm.controls['areaCode'].errors?.maxlength">The max no. of area code is 5 !</mat-error>
+            <mat-error *ngIf='areaCodeServerError'>{{areaCodeServerError}}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <mat-form-field [style.width.px]="addressFieldWidth/3-15">
+            <mat-label>Prefix</mat-label>
+            <input matInput #prefix formControlName="prefix" placeholder="###" required>
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="addContactForm.controls['prefix'].errors?.required">Enter your prefix code!</mat-error>
+            <mat-error *ngIf="addContactForm.controls['prefix'].errors?.maxlength">The max no. of prefix code is 3 !</mat-error>
+            <mat-error *ngIf='prefixCodeServerError'>{{prefixCodeServerError}}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <mat-form-field [style.width.px]="addressFieldWidth/3-15">
+            <mat-label>Line Number</mat-label>
+            <input matInput #lineNumber formControlName="lineNumber" placeholder="####" required>
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="addContactForm.controls['lineNumber'].errors?.required">Enter your Line Number code!</mat-error>
+            <mat-error *ngIf="addContactForm.controls['lineNumber'].errors?.maxlength">The max no. of Line Number code is 4 !</mat-error>
+            <mat-error *ngIf='landLineCodeServerError'>{{landLineCodeServerError}}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+  
+        <mat-grid-tile>
+          <mat-form-field>
+            <!-- <input matInput #photo formControlName="photo" type="file" placeholder="http://cdn.com/profile.jpg" name="photo" (change)="fileChangeEvent($event)"> -->
+            <ngx-mat-file-input matInput formControlName="photo" placeholder="Image" accept="image/*" (change)="fileChangeEvent($event)"></ngx-mat-file-input>
+            <mat-icon matSuffix>folder</mat-icon>
+            <mat-error *ngIf="addContactForm.controls['photo'].errors?.required">Image is required!</mat-error>
+            <mat-error *ngIf="addContactForm.get('photo')?.hasError('maxContentSize')">Photo should not 300 KB!</mat-error>
+            <mat-error *ngIf="photoServerError">Photo should be in jpeg, jpg or png format!</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+  
+      </mat-grid-list>
+      
+      <button mat-raised-button color="primary" type="submit" [disabled]="addContactForm.invalid">Add</button>
+  
+    </form>
+  </mat-dialog-content>

@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AngularMaterialModule } from '../angularMaterial/angular-material.module';
 import { SearchContactPipe } from '../pipe/contacts/search-contact.pipe';
 import { EditContactModalComponent } from './edit-contact-modal/edit-contact-modal.component';
+import { AddContactModalComponent } from './add-contact-modal/add-contact-modal.component';
 
 
 /* import { MatButtonModule } from '@angular/material/button';
@@ -21,7 +22,8 @@ import { MatIconModule } from '@angular/material/icon'; */
     ContactComponent,
     ContactListComponent,
     SearchContactPipe,
-    EditContactModalComponent
+    EditContactModalComponent,
+    AddContactModalComponent
   ],
   imports: [
     CommonModule,

@@ -10,9 +10,15 @@ app-contact {
   margin: auto;
 } */
 
-.mat-form-field {
+/* .mat-form-field {
   display: flex;
   justify-content: right;
   align-items: right;
   text-align: right;
+} */
+
+mat-form-field {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
