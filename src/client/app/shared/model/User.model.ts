@@ -1,5 +1,5 @@
 export interface User {
-  _id: undefined,
+  _id: string,
   username: string;
   admin: boolean;
   password: string;

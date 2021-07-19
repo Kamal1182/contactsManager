@@ -19,7 +19,7 @@ export class ContactListComponent implements OnInit {
 
   breakpoint!: number;
 
-  constructor(public api: ApiService, private auth: AuthService,
+  constructor(private api: ApiService, private auth: AuthService,
               private addNewContactdialog: MatDialog
              ) { 
     api.refreshCall$.subscribe(

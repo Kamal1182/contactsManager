@@ -9,6 +9,11 @@ const routes: Routes = [
     loadChildren: () => import('./contacts/contacts.module').then(m => m.ContactsModule)
   },
   {
+    path: 'users',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
+  },
+  {
     path: 'login',
     loadChildren: () => import('./logging/logging.module').then(m => m.LoggingModule)
   },
