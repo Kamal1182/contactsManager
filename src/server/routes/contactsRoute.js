@@ -18,7 +18,7 @@ module.exports = () => {
 
   router.post('/', addContactValidationRules(),validate, (req, res, next) => {
 
-    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin ) {
+    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin == 'false' ) {
       return res.status(401).json({ error: 'Adding new contact is allowed for admins only!' });
     }
 
@@ -53,7 +53,7 @@ module.exports = () => {
 
   router.put('/:id', addContactValidationRules(),validate, (req, res, next) => {
 
-    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin ) {
+    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin == 'false' ) {
       return res.status(401).json({ error: 'Editing a user is allowed for admins only!' });
     }
 
@@ -101,7 +101,7 @@ module.exports = () => {
 
   router.delete('/:id', (req, res) => {
 
-    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin ) {
+    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin == 'false' ) {
       return res.status(401).json({ error: 'Deleting a user is allowed for admins only!' });
     }
 

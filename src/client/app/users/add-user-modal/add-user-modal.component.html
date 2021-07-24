@@ -1,0 +1,46 @@
+<div class="add-title">
+    <h2 mat-dialog-title>Add New User</h2>
+</div>
+
+<mat-dialog-content>
+    <form [formGroup]="editUserForm" (ngSubmit)="onSubmit()" [class.loading]="loading" novalidate>
+      <mat-grid-list #gridList [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">
+    
+        <mat-grid-tile>
+          <mat-form-field>
+            <input matInput #username placeholder="User Name" type="text" formControlName="username">
+              <mat-error *ngIf="editUserForm.controls['username'].errors?.required">Enter user name</mat-error>
+              <mat-error>{{usernameServerError}}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>  
+        
+        <mat-grid-tile>
+          <!-- <input matInput #admin placeholder="admin" type="text" formControlName="admin"> -->
+          <mat-form-field>
+            <mat-label>Admin</mat-label>
+            <input matInput formControlName="admin" style="display:none" required>
+            <mat-radio-group matInput #admin formControlName="admin" aria-label="Admin">
+              <mat-radio-button [value]=true>True</mat-radio-button>
+              <mat-radio-button [value]=false>False</mat-radio-button>
+            </mat-radio-group>
+            <mat-error *ngIf="editUserForm.controls['admin'].errors?.required">Choose admin or not!</mat-error>
+            <mat-error>{{adminServerError}}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        
+        <mat-grid-tile>
+          <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput #password type="password" formControlName="password" placeholder="password" required>
+            <mat-icon matSuffix>password</mat-icon>
+            <mat-error *ngIf="editUserForm.controls['password'].errors?.required">Enter password!</mat-error>
+            <mat-error *ngIf='passwordServerError'>{{passwordServerError}}</mat-error>
+          </mat-form-field>
+        </mat-grid-tile>
+        
+      </mat-grid-list>
+      
+      <button mat-raised-button color="primary" type="submit" [disabled]="editUserForm.invalid">Add</button>
+  
+    </form>
+  </mat-dialog-content>

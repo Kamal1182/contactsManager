@@ -1,0 +1,9 @@
+<div class="add-title">
+    <h2 mat-dialog-title>Delete User ( <strong>{{user.username}}</strong> ) data! </h2>
+</div>
+
+<p>All information associated to this user will be permanently deleted.
+    <span class="text-danger">This operation can not be undone.</span>
+</p>
+
+<button mat-raised-button color="warn" (click)="deleteUser()">Delete</button>

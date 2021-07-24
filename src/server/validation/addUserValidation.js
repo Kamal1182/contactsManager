@@ -39,7 +39,8 @@ const addUserValidationRules = () => {
     body('username').trim().not().isEmpty().withMessage('username is required.')
       .isLength({ min: 6 }).withMessage('Username should not be less than 6 characters.')
       //.isAlpha().withMessage('First Name should only be alphabetic.'),
-      .matches(/^(?=.*[a-z])(?=.*[A-Z])[A-Za-z]{6,}$/, "i").withMessage('username should only be alphabetic.'),
+      .matches(/^(?=.*[A-Za-z])[A-Za-z]{6,29}$/, "i").withMessage('username should only be alphabetic and 6-30 charater long.'),
+    body('admin').trim().isBoolean().withMessage('Admin value is required (True or False'),  
     body('password').trim().not().isEmpty().withMessage('password is required.')
       .isLength({ min: 8 })
         .withMessage('Password should not be less than 8 characters.')

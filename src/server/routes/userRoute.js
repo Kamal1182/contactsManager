@@ -12,8 +12,8 @@ const bcrypt = require('bcrypt');
 module.exports = () => {
   router.get('/', (req, res) => {
 
-    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin ) {
-      return res.status(401).json({ error: 'Adding new user is allowed for admins only!' });
+    if( jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin == 'false' ) {
+      return res.status(401).json({ error: 'Showing users is allowed for admins only!' });
     }
     const usersCollection = database.collection('users');
     
@@ -25,7 +25,7 @@ module.exports = () => {
 
   router.post('/', addUserValidationRules(),validate, (req, res, next) => {
 
-    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin ) {
+    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin == 'false' ) {
       return res.status(401).json({ error: 'Adding new user is allowed for admins only!' });
     }
 
@@ -54,11 +54,10 @@ module.exports = () => {
   })
 
   router.put('/:id', addUserValidationRules(),validate, (req, res, next) => {
-
-    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin ) {
+    
+    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin == 'false' ) {
       return res.status(401).json({ error: 'Editing a user is allowed for admins only!' });
     }
-
     const user = req.body;
     delete user._id;
     user.password = bcrypt.hashSync(user.password, 10);
@@ -79,7 +78,7 @@ module.exports = () => {
 
   router.delete('/:id', (req, res) => {
 
-    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin ) {
+    if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin == 'false' ) {
       return res.status(401).json({ error: 'Deleting a user is allowed for admins only!' });
     }
 

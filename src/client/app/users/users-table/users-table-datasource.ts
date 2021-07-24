@@ -87,8 +87,8 @@ export class UsersTableDataSource extends DataSource<User> {
    * any open connections or free any held resources that were set up during connect.
    */
   disconnect(): void {
-    this.usersSubject.complete();
-    this.loadingSubject.complete();
+    // this.usersSubject.complete();
+    // this.loadingSubject.complete();
   }
 
   /**
@@ -97,12 +97,13 @@ export class UsersTableDataSource extends DataSource<User> {
    * @returns 
    */
   public loadUsers() {
-
     this.loadingSubject.next(true);
 
     this.api.get('users')
       .pipe( finalize(() => this.loadingSubject.next(false)) )
-      .subscribe(users => this.usersSubject.next(users))
+      .subscribe(users => {
+        this.usersSubject.next(users)
+      })
 
   }
 
@@ -130,7 +131,6 @@ export class UsersTableDataSource extends DataSource<User> {
 
     return data.sort((a, b) => {
       const isAsc = this.sort?.direction === 'asc';
-      console.log("isAsc: " +isAsc)
       switch (this.sort?.active) {
         case '_id': return compare(a._id, b._id, isAsc);
         case 'username': return compare(a.username.toLowerCase(), b.username.toLowerCase(), isAsc);

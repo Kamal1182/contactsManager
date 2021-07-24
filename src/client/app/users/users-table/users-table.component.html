@@ -1,3 +1,7 @@
+<div>
+  <button mat-raised-button matSuffix mat-stroked-button color="primary" (click)="addUserDialog()">Add New User</button>
+</div>
+
 <div class="mat-elevation-z8 users-table">
 
   <div class="spinner-container" *ngIf="dataSource.loading$ | async">
@@ -21,6 +25,22 @@
     <ng-container matColumnDef="admin">
       <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Admin</mat-header-cell>
       <mat-cell mat-cell *matCellDef="let row">{{row.admin}}</mat-cell>
+    </ng-container>
+
+    <!-- Delete Button Column -->
+    <ng-container matColumnDef="delete">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Delete</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">
+        <button mat-raised-button color="warn" (click)="deleteUserDialog(row)">Delete</button>
+      </mat-cell>
+    </ng-container>
+
+    <!-- Edit Button Column -->
+    <ng-container matColumnDef="edit">
+      <mat-header-cell mat-header-cell *matHeaderCellDef mat-sort-header>Edit</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let row">
+        <button mat-raised-button color="primary" (click)="editUserDialog(row)">Edit</button>
+      </mat-cell>
     </ng-container>
 
     <mat-header-row mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
