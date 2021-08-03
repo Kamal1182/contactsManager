@@ -46,7 +46,7 @@ export class EditContactModalComponent implements OnInit {
               private EditDialogRef: MatDialogRef<EditContactModalComponent>,
               @Inject(MAT_DIALOG_DATA) data: Contact,
               private _EditedContactsnackBar: MatSnackBar,
-              private api: ApiService) { 
+              public api: ApiService) { 
 
                 this.contact = data;
               
@@ -194,7 +194,7 @@ export class EditContactModalComponent implements OnInit {
           // this.editContactForm.reset(this.editContactForm.value);
         } else {
           //this.editContactForm.reset();
-          this.loading = false;
+          this.loading = true;
           this.contactEdited = data.value;
           console.log(this.contactEdited);
           this._EditedContactsnackBar.open(`${this.contactEdited.firstName} ${this.contactEdited.lastName}`, 'Updated!', {duration: 5000} );

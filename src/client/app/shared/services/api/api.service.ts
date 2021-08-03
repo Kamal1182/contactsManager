@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpRequest, HttpResponse } from '@angular/common/http';
 
-import { from } from 'rxjs';
+import { BehaviorSubject, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 /* import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -16,6 +16,8 @@ import { AuthService } from '../auth/auth.service';
 @Injectable()
 export class ApiService {
 
+  public isLoading: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  
   private baseUrl = environment.apiUrl;
 
   private refreshNeeded = new Subject();

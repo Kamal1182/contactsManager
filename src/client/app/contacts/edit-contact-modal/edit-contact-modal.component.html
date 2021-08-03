@@ -4,6 +4,9 @@
 </div>
     
 <mat-dialog-content>
+  <div class="loader-container" *ngIf="api.isLoading | async">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
   <form [formGroup]="editContactForm" (ngSubmit)="onSubmit()" [class.loading]="loading" novalidate>
     <mat-grid-list #gridList [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">
 
