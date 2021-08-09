@@ -25,7 +25,7 @@ export class HeaderTokenInterceptor implements HttpInterceptor {
                                                     }
                         })
                       ).pipe( 
-                          finalize( ()=>{this.api.isLoading.next(false); console.log(this.api.isLoading.value);
+                          finalize( ()=>{this.api.isLoading.next(false);
                           } )
                       );
   }

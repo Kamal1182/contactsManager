@@ -31,7 +31,7 @@ export class EditUserModalComponent implements OnInit {
               private fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA) data: User,
               private editDialogRef: MatDialogRef<EditUserModalComponent>,
-              private api : ApiService,
+              public api : ApiService,
               private _EditedUserSnackBar: MatSnackBar,
              ) { 
                   this.user = data; 
@@ -58,7 +58,6 @@ export class EditUserModalComponent implements OnInit {
       password : formValues.password,
     };
 
-    console.log(user);
     this.api.put('users/'+this.user._id, user)
       .subscribe( (data: any) => {
         if( data.statusCode == 401 ) {
@@ -81,7 +80,6 @@ export class EditUserModalComponent implements OnInit {
             this.passwordServerError = data.error.password
            ) : null;
         } else {
-          console.log( data );
           this._EditedUserSnackBar.open(`${this.user.username}` , 'Edited!', {duration: 5000} );
           this.api.makeRefresh();
           this.editDialogRef.close();

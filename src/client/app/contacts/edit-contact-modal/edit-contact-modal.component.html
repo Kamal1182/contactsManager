@@ -1,12 +1,15 @@
+<div class="dialog-container"> 
+  <div class="loader-container" *ngIf="api.isLoading | async">
+    <mat-spinner style="top: 50%; left: 50%;"></mat-spinner>
+  </div>
+
 <div class="add-title">
   <h2 mat-dialog-title *ngIf="contact.name">Edit <strong>{{contact.name}}`s</strong> data </h2>
   <h2 mat-dialog-title *ngIf="contact.firstName">Edit <strong>{{contact.lastName}}`s</strong> data </h2>
 </div>
     
 <mat-dialog-content>
-  <div class="loader-container" *ngIf="api.isLoading | async">
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  </div>
+  
   <form [formGroup]="editContactForm" (ngSubmit)="onSubmit()" [class.loading]="loading" novalidate>
     <mat-grid-list #gridList [cols]="breakpoint" rowHeight="85px" (window:resize)="onResize($event)">
 
@@ -96,3 +99,4 @@
 
   </form>
 </mat-dialog-content>
+</div>

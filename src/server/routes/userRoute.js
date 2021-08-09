@@ -28,9 +28,9 @@ module.exports = () => {
     if( !jwt.verify( req.headers.authorization.split(' ')[1], process.env.JWT_SECRET).admin == 'false' ) {
       return res.status(401).json({ error: 'Adding new user is allowed for admins only!' });
     }
-
+    
     const user = req.body;
-    user.admin = req.body.admin ? true : false;
+    user.admin = req.body.admin == 'true' ? true : false;
     user.password = bcrypt.hashSync(user.password, 10);
     
     const usersCollection = database.collection('users');

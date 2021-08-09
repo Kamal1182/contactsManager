@@ -1,3 +1,8 @@
+<div class="dialog-container"> 
+  <div class="loader-container" *ngIf="api.isLoading | async">
+    <mat-spinner style="top: 50%; left: 50%;"></mat-spinner>
+  </div>
+
 <div class="add-title">
     <h2 mat-dialog-title>Edit User ( <strong>{{user.username}}</strong> ) data </h2>
 </div>
@@ -44,3 +49,4 @@
   
     </form>
   </mat-dialog-content>
+</div>

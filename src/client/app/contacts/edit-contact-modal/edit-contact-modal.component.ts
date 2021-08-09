@@ -150,7 +150,7 @@ export class EditContactModalComponent implements OnInit {
       photoUrl  : this.imageBase64
     };
 
-    //console.log(contact);
+    console.log(contact);
     //this.loading = false;
     //this.editContactForm.reset(this.editContactForm.value);
     this.api.put( 'contacts/'+this.contact._id, contact )
