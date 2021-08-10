@@ -4,9 +4,9 @@
   "scripts": {
     "ng": "ng",
     "build": "ng build --prod",
-    "start": "node src/server/index.js",
+    "start": "node index.js",
     "watch:client": "ng serve --proxy-config proxy.conf.json --open",
-    "watch:server": "nodemon src/server/index.js",
+    "watch:server": "index.js",
     "watch": "run-p watch:*",
     "sample": "node src/server/data/seed-db.js",
     "test": "ng test",
