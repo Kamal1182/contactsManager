@@ -4,6 +4,7 @@ const { addContactValidationRules, validate } = require('../validation/addUserVa
 const fs = require('fs');
 const ObjectId = require('mongodb').ObjectID;
 const jwt     = require('jsonwebtoken');
+const sanitizeHtml = require('sanitize-html');
 
 //const db      = require('../dbConnection');
 //database      = db.getDb();
@@ -26,7 +27,7 @@ module.exports = () => {
 
     // Write the image to profiles folder
     var buffer = new Buffer(req.body.photoUrl.data, 'base64');
-    const photoName = `${req.body.firstName}-${req.body.lastName}.${req.body.photoUrl.extension}`;
+    const photoName = `${sanitizeHtml(req.body.firstName)}-${sanitizeHtml(req.body.lastName)}.${sanitizeHtml(req.body.photoUrl.extension)}`;
     fs.writeFile(process.cwd()+`/src/server/profiles/`+photoName,
                   buffer, function (err,data) {
         if (err) {
