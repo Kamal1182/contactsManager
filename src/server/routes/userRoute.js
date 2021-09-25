@@ -6,6 +6,7 @@ const ObjectId = require('mongodb').ObjectID;
 const jwt     = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const sanitizeHtml = require('sanitize-html');
+require('dotenv').config();
 
 //const db      = require('../dbConnection');
 //database      = db.getDb();
@@ -32,7 +33,7 @@ module.exports = () => {
     
     const user = req.body;
     user.admin = req.body.admin == 'true' ? true : false;
-    user.password = bcrypt.hashSync(user.password, 10);
+    user.password = bcrypt.hashSync(user.password, process.env.hashSalt);
     
     const usersCollection = database.collection('users');
 
@@ -61,7 +62,7 @@ module.exports = () => {
     }
     const user = req.body;
     delete user._id;
-    user.password = bcrypt.hashSync(user.password, 10);
+    user.password = bcrypt.hashSync(user.password, process.env.hashSalt);
 
     const usersCollection = database.collection('users');
 
