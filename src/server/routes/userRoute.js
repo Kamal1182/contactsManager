@@ -5,6 +5,7 @@ const fs = require('fs');
 const ObjectId = require('mongodb').ObjectID;
 const jwt     = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const sanitizeHtml = require('sanitize-html');
 
 //const db      = require('../dbConnection');
 //database      = db.getDb();
@@ -35,7 +36,7 @@ module.exports = () => {
     
     const usersCollection = database.collection('users');
 
-    usersCollection.findOne({ "username" : user.username }, (err, result) => {
+    usersCollection.findOne({ "username" : sanitizeHtml(user.username) }, (err, result) => {
       //if (err) throw err;
       if(result) {
         return res.status(409).json({ error: 'User already exists' });
