@@ -26,7 +26,8 @@ module.exports = () => {
 
     // Write the image to profiles folder
     var buffer = new Buffer(req.body.photoUrl.data, 'base64');
-    fs.writeFile(process.cwd()+`/src/server/profiles/${req.body.firstName}-${req.body.lastName}.${req.body.photoUrl.extension}`,
+    const photoName = `${req.body.firstName}-${req.body.lastName}.${req.body.photoUrl.extension}`;
+    fs.writeFile(process.cwd()+`/src/server/profiles/`+photoName,
                   buffer, function (err,data) {
         if (err) {
           return console.log(err);
