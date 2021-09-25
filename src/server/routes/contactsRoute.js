@@ -28,7 +28,7 @@ module.exports = () => {
     // Write the image to profiles folder
     var buffer = new Buffer(req.body.photoUrl.data, 'base64');
     const photoName = `${sanitizeHtml(req.body.firstName)}-${sanitizeHtml(req.body.lastName)}.${sanitizeHtml(req.body.photoUrl.extension)}`;
-    fs.writeFile(process.cwd()+`/src/server/profiles/`+photoName,
+    fs.writeFile(process.cwd()+`/src/server/profiles/`+sanitizeHtml(photoName),
                   buffer, function (err,data) {
         if (err) {
           return console.log(err);
