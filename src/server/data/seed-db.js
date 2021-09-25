@@ -5,6 +5,8 @@ const bcrypt = require('bcrypt');
 
 const users = require('./users');
 const contacts = require('./contacts');
+require('dotenv').config();
+
 
 
 function seedCollection(collectionName, initialRecords) {
@@ -18,7 +20,7 @@ function seedCollection(collectionName, initialRecords) {
 
     initialRecords.forEach((item) => {
       if (item.password) {
-        item.password = bcrypt.hashSync(item.password, 10);
+        item.password = bcrypt.hashSync(item.password, process.env.hashSalt);
       }
     });
 
