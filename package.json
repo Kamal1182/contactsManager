@@ -29,7 +29,7 @@
     "bcrypt": "^5.0.1",
     "dotenv": "^9.0.2",
     "express-fileupload": "^1.2.1",
-    "express-jwt": "^6.0.0",
+    "express-jwt": "^8.0.0",
     "express-validator": "^6.11.1",
     "mongodb": "^3.6.6",
     "ngx-material-file-input": "^2.1.1",
