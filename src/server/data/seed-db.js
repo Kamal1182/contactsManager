@@ -11,28 +11,34 @@ require('dotenv').config();
 
 function seedCollection(collectionName, initialRecords) {
 
-  MongoClient.connect(process.env.DB_CONN, (err, db) => {
-    console.log('connected to mongodb...');
+  MongoClient.connect(process.env.DB_CONN, { useUnifiedTopology: true }, (err, cluster) => {
+    
+    if(err) {
+      console.log('Database error: ' + err);
+    } else {
+      const db = cluster.db('contacts-app-vm');
+      
+      const collection = db.collection(collectionName);
+      
+      console.log('Successful database connection...');
+      
+      collection.deleteMany({});  
 
-    const collection = db.collection(collectionName);
+      initialRecords.forEach((item) => {
+        if (item.password) {
+          item.password = bcrypt.hashSync(item.password, 10);
+        }
+      });
 
-    collection.remove();  
+      console.log('inserting records...');
 
-    initialRecords.forEach((item) => {
-      if (item.password) {
-        item.password = bcrypt.hashSync(item.password, process.env.hashSalt);
-      }
-    });
-
-    console.log('inserting records...');
-
-    collection.insertMany(initialRecords, (err, result) => {
-      console.log(`${result.insertedCount} records inserted.`);
-      console.log('closing connection...');
-      db.close();
-      console.log('done.');
-    });
-
+      collection.insertMany(initialRecords, (err, result) => {
+        console.log(`${result.insertedCount} records inserted.`);
+        console.log('closing connection...');
+        cluster.close();
+        console.log('done.');
+      });
+    }
   });
 }
 
